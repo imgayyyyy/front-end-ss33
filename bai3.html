@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select name="" id="">
+        <option value=""></option>
+    </select>
+    <button onclick="check()">loc</button>
+
+    <script>
+        let dish = [
+            { name: "Rau sạch", category: "Đồ ăn" },
+            { name: "Thịt lợn", category: "Đồ ăn" },
+            { name: "Pepsi không calo", category: "Nước" },
+            { name: "Cocacola", category: "Nước" },
+            { name: "Cờ lê", category: "Dụng cụ" },
+            { name: "Tuy vít", category: "Dụng cụ" },
+        ];
+        let check = null;
+        let ul = document.getElementById("list");
+        let select = document.getElementById("select");
+        let btn = document.getElementsByClassName("btn")[0];
+        displaySelect();
+        btn.addEventListener("click", function () {
+            ul.innerHTML = "";
+            let value = select.value;
+            display(value);
+        });
+        function displaySelect() {
+            for (let i in dish) {
+                let newOption = `
+      <option>
+      ${dish[i].category}
+      </option>
+      `;
+                if (check !== dish[i].category) {
+                    check = dish[i].category;
+                    select.innerHTML += newOption;
+                }
+            }
+        }
+
+        function display(value) {
+            for (let i in dish) {
+                if (value === dish[i].category) {
+                    let newDish = `
+    <li>
+    <b>Tên đồ ăn: </b>${dish[i].name}<b>- Danh mục: </b>${dish[i].category}
+    </li>
+    `;
+                    ul.innerHTML += newDish;
+                } else if (value === "lua_chon") {
+                    let newDish = `
+        <li>
+        <b>Tên đồ ăn: </b>${dish[i].name}<b>- Danh mục: </b>${dish[i].category}
+        </li>
+        `;
+                    ul.innerHTML += newDish;
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
